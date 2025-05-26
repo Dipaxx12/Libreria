@@ -76,6 +76,6 @@ public class FacturaDetallePrincipal {
         );
 
         // Mostrar salida
-        System.out.println(fd);
+        System.out.println(fd.toString());
     }
 }
