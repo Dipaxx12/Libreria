@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'jacoco'
+    id 'io.qameta.allure' version '2.11.2' // 👈 Plugin de Allure
 }
 
 group = 'com.distribuida'
@@ -12,8 +13,10 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform('org.junit:junit-bom:5.10.0'))
-    testImplementation('org.junit.jupiter:junit-jupiter')
+    implementation 'io.qameta.allure:allure-java-commons:2.21.0'
+    testImplementation 'io.qameta.allure:allure-junit5:2.21.0'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
 application {
@@ -28,6 +31,7 @@ java {
 
 tasks.test {
     useJUnitPlatform()
+    systemProperty "allure.results.directory", "$buildDir/allure-results"
 }
 
 jacocoTestReport {
